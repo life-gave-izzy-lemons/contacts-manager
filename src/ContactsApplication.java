@@ -10,26 +10,27 @@ import java.util.ArrayList;
 
 public class ContactsApplication {
 
+    static Input input = new Input();
+    static Path filePath = Paths.get("src", "contacts.txt");
 
     public static void main(String[] args) {
-        addContacts("Mark", "7874378738");
-        viewContacts();
-        Input input = new Input();
-        String searchedName = input.getString();
-//        searchContacts(searchedName);
-        deleteContacts(searchedName);
+
+        userInter();
+
+
     }
 
 
     public static void viewContacts() {
-
-        Path filePath = Paths.get("src", "contacts.txt");
-        List<String> strList = null;
-
+        List<String> strList;
+        String name = "       Name";
+        String num = "Number";
+        System.out.printf("%-15s | %s \n", name, num);
+        System.out.println("----------------------------");
         try {
             strList = Files.readAllLines(filePath);
             for (int i = 0; i < strList.size(); i++) {
-                System.out.print((i + 1) + ": " + strList.get(i) + "\n");
+                System.out.printf((i + 1) + " : " + strList.get(i) + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -37,15 +38,15 @@ public class ContactsApplication {
 
     }
 
-    public static void addContacts(String name, String num) {
-
-        Path filePath = Paths.get("src", "contacts.txt");
-        List<String> strList = null;
-
+    public static void addContacts() {
+        System.out.println("Enter name: ");
+        String name = input.getString();
+        System.out.println("Enter number: 10 digits/ no spaces/ no symbols");
+        String num = input.getString();
         try {
             Files.write(
                     Paths.get("src", "contacts.txt"),
-                    Arrays.asList(String.format("%s | %s", name, num)), // list with one item
+                    Arrays.asList(String.format("%-11s | %s", name, num)), // list with one item
                     StandardOpenOption.APPEND
             );
         } catch (IOException e) {
@@ -54,44 +55,85 @@ public class ContactsApplication {
     }
 
     public static void searchContacts(String name) {
-
-        Path filePath = Paths.get("src", "contacts.txt");
-        List<String> strList = null;
-
+        List<String> strList;
         try {
             strList = Files.readAllLines(filePath);
+//            System.out.printf("Name | Phone number");
             for (int i = 0; i < strList.size(); i++) {
-                if (strList.get(i).contains(name)) {
+                if (strList.get(i).toLowerCase().contains(name.toLowerCase())) {
                     System.out.print((i + 1) + ": " + strList.get(i) + "\n");
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public static void userInter() {
+        boolean keepOn = true;
+        do {
+            System.out.println("1. View contacts.\n" +
+                    "2. Add a new contact.\n" +
+                    "3. Search a contact by name.\n" +
+                    "4. Delete an existing contact.\n" +
+                    "5. Exit\n");
+            int userSelect = input.getInt(1, 5);
+            switch (userSelect) {
+                case 1:
+                    System.out.println("\n");
+                    viewContacts();
+                    System.out.println("\n");
+                    break;
+                case 2:
+                    addContacts();
+                    System.out.println("\n");
+                    viewContacts();
+                    System.out.println("\n");
+                    break;
+                case 3:
+                    System.out.println("Enter a name: ");
+                    String searchedName = input.getString();
+                    System.out.println("\n");
+                    searchContacts(searchedName);
+                    System.out.println("\n");
+                    break;
+                case 4:
+                    System.out.println("\n");
+                    viewContacts();
+                    System.out.println("\n");
+                    deleteContacts();
+                    System.out.println("\n");
+                    viewContacts();
+                    System.out.println("\n");
+                    break;
+                case 5:
+                    keepOn = false;
+                    break;
+                default:
+                    // code block
+            }
+        }while(keepOn);
     }
 
     public static void deleteContacts() {
+        System.out.println("Choose the number you want to delete: ");
 
-        Path filePath = Paths.get("src", "contacts.txt");
+
         List<String> strList = null;
-
         List<String> lines = null;
+        int userInput;
+
         try {
             lines = Files.readAllLines(Paths.get("src", "contacts.txt"));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        for (int i = 0; i < strList.size(); i++) {
-            if (strList.get(i).contains()) {
-                System.out.print((i + 1) + ": " + strList.get(i) + "\n");
-            }
-        }
+        userInput = input.getInt(1,lines.size());
 
         List<String> newList = new ArrayList<>();
         for (String line : lines) {
-            if (line.contains()) {
+            if (line.equals(lines.get(userInput - 1))) {
                 continue;
             }
             newList.add(line);
@@ -103,7 +145,5 @@ public class ContactsApplication {
                 e.printStackTrace();
             }
         }
-
-
     }
 }
