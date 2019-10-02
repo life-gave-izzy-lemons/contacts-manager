@@ -23,10 +23,14 @@ public class ContactsApplication {
 
     public static void viewContacts() {
         List<String> strList;
+        String name = "       Name";
+        String num = "Number";
+        System.out.printf("%-15s | %s \n", name, num);
+        System.out.println("----------------------------");
         try {
             strList = Files.readAllLines(filePath);
             for (int i = 0; i < strList.size(); i++) {
-                System.out.print((i + 1) + ": " + strList.get(i) + "\n");
+                System.out.printf((i + 1) + " : " + strList.get(i) + "\n");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -42,7 +46,7 @@ public class ContactsApplication {
         try {
             Files.write(
                     Paths.get("src", "contacts.txt"),
-                    Arrays.asList(String.format("%s | %s", name, num)), // list with one item
+                    Arrays.asList(String.format("%-11s | %s", name, num)), // list with one item
                     StandardOpenOption.APPEND
             );
         } catch (IOException e) {
@@ -54,6 +58,7 @@ public class ContactsApplication {
         List<String> strList;
         try {
             strList = Files.readAllLines(filePath);
+//            System.out.printf("Name | Phone number");
             for (int i = 0; i < strList.size(); i++) {
                 if (strList.get(i).toLowerCase().contains(name.toLowerCase())) {
                     System.out.print((i + 1) + ": " + strList.get(i) + "\n");
