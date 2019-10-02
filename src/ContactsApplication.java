@@ -93,7 +93,13 @@ public class ContactsApplication {
                     System.out.println("\n");
                     break;
                 case 4:
-                    // code
+                    System.out.println("\n");
+                    viewContacts();
+                    System.out.println("\n");
+                    deleteContacts();
+                    System.out.println("\n");
+                    viewContacts();
+                    System.out.println("\n");
                     break;
                 case 5:
                     keepOn = false;
@@ -104,39 +110,35 @@ public class ContactsApplication {
         }while(keepOn);
     }
 
-//    public static void deleteContacts() {
-//
-//        Path filePath = Paths.get("src", "contacts.txt");
-//        List<String> strList = null;
-//
-//        List<String> lines = null;
-//        try {
-//            lines = Files.readAllLines(Paths.get("src", "contacts.txt"));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        for (int i = 0; i < strList.size(); i++) {
-//            if (strList.get(i).contains()) {
-//                System.out.print((i + 1) + ": " + strList.get(i) + "\n");
-//            }
-//        }
-//
-//        List<String> newList = new ArrayList<>();
-//        for (String line : lines) {
-//            if (line.contains()) {
-//                continue;
-//            }
-//            newList.add(line);
-//
-//            try {
-//                Files.write(
-//                        Paths.get("src", "contacts.txt"), newList);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//
-//
-//    }
+    public static void deleteContacts() {
+        System.out.println("Choose the number you want to delete: ");
+
+
+        List<String> strList = null;
+        List<String> lines = null;
+        int userInput;
+
+        try {
+            lines = Files.readAllLines(Paths.get("src", "contacts.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        userInput = input.getInt(1,lines.size());
+
+        List<String> newList = new ArrayList<>();
+        for (String line : lines) {
+            if (line.equals(lines.get(userInput - 1))) {
+                continue;
+            }
+            newList.add(line);
+
+            try {
+                Files.write(
+                        Paths.get("src", "contacts.txt"), newList);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
