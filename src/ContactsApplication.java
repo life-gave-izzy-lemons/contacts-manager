@@ -51,12 +51,11 @@ public class ContactsApplication {
     }
 
     public static void searchContacts(String name) {
-
         List<String> strList;
         try {
             strList = Files.readAllLines(filePath);
             for (int i = 0; i < strList.size(); i++) {
-                if (strList.get(i).contains(name)) {
+                if (strList.get(i).toLowerCase().contains(name.toLowerCase())) {
                     System.out.print((i + 1) + ": " + strList.get(i) + "\n");
                 }
             }
@@ -87,6 +86,7 @@ public class ContactsApplication {
                     System.out.println("\n");
                     break;
                 case 3:
+                    System.out.println("Enter a name: ");
                     String searchedName = input.getString();
                     System.out.println("\n");
                     searchContacts(searchedName);
