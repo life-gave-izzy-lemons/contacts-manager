@@ -37,9 +37,9 @@ public class ApplicationContacts {
     }
 
     public static void addContacts() {
-        System.out.println("Enter Contact Name: ");
+        System.out.println("Enter Contact Name ");
         String name = input.getString();
-        System.out.println("Enter Contact Number: ");
+        System.out.println("Enter Contact Number (no spaces or dashes) ");
         String num = input.getString(7,10);
         Contact newContact = new Contact(name, num);
 
@@ -51,6 +51,56 @@ public class ApplicationContacts {
             );
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void searchContacts(String name) {
+        List<String> strList;
+        String nameTitle = "       Name";
+        String numTitle = "Number";
+        System.out.printf("%-15s | %s \n", nameTitle, numTitle);
+        System.out.println("----------------------------");
+        try {
+            strList = Files.readAllLines(p);
+            for (int i = 0; i < strList.size(); i++) {
+                if (strList.get(i).toLowerCase().contains(name.toLowerCase())) {
+                    System.out.print((i + 1) + ": " + strList.get(i) + "\n");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteContacts() {
+        System.out.println("Choose the number you want to delete: ");
+
+
+        List<String> strList = null;
+        List<String> lines = null;
+        int userInput;
+
+        try {
+            lines = Files.readAllLines(p);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        userInput = input.getInt(1, lines.size());
+
+        List<String> newList = new ArrayList<>();
+        for (String line : lines) {
+            if (line.equals(lines.get(userInput - 1))) {
+                continue;
+            }
+            newList.add(line);
+
+            try {
+                Files.write(
+                        p, newList);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -79,14 +129,14 @@ public class ApplicationContacts {
                     System.out.println("Enter a name: ");
                     String searchedName = input.getString();
                     System.out.println("\n");
-//                    searchContacts(searchedName);
+                    searchContacts(searchedName);
                     System.out.println("\n");
                     break;
                 case 4:
                     System.out.println("\n");
                     viewContacts();
                     System.out.println("\n");
-//                    deleteContacts();
+                    deleteContacts();
                     System.out.println("\n");
                     viewContacts();
                     System.out.println("\n");
@@ -94,8 +144,6 @@ public class ApplicationContacts {
                 case 5:
                     keepOn = false;
                     break;
-                default:
-                    // code block
             }
         }while(keepOn);
     }
