@@ -37,8 +37,7 @@ public class ApplicationContacts {
     }
 
     public static void addContacts() {
-        System.out.println("Enter Contact Name ");
-        String name = input.getString();
+        String name = input.getString("Enter Contact Name");
         System.out.println("Enter Contact Number (no spaces or dashes) ");
         String num = input.getString(7,10);
         Contact newContact = new Contact(name, num);
