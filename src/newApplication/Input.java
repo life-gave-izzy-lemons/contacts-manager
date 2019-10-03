@@ -1,6 +1,7 @@
 package newApplication;
 
 import java.util.Scanner;
+import java.io.IOException;
 
 public class Input {
     private Scanner scanner;
@@ -23,7 +24,11 @@ public class Input {
     }
 
     public String getString(int num2, int num1){
-        String userInput = scanner.nextLine();
+        long userNum = getLong();
+        String userInput = String.valueOf( userNum);
+
+
+
         if (userInput.length() == num2 || userInput.length() == num1){
             return userInput;
         }else {
@@ -61,12 +66,23 @@ public class Input {
 
     public int getInt(){
         try{
-           int userNum = Integer.valueOf( scanner.nextLine() );
+            int userNum = Integer.valueOf( scanner.nextLine() );
             return userNum;
 
         }catch (Exception e){
             System.out.println("Not valid integer");
             return getInt();
+        }
+    }
+
+    public long getLong(){
+        try{
+            long userNum = Long.valueOf( scanner.nextLine() );
+            return userNum;
+
+        }catch (Exception e){
+            System.out.println("Not valid integer");
+            return getLong();
         }
     }
 
