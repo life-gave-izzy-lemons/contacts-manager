@@ -4,21 +4,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ArrayList;
-import java.nio.file.StandardOpenOption;
 
+public class MenuOptions {
 
-public class ApplicationContacts {
     static Input input = new Input();
     static Path p = Paths.get("src", "newApplication", "newContacts.txt");
-
-    public static void main(String[] args) {
-
-        userInter();
-    }
 
     public static void viewContacts() {
         List<String> strList;
@@ -103,48 +97,7 @@ public class ApplicationContacts {
         }
     }
 
-    public static void userInter() {
-        boolean keepOn = true;
-        do {
-            System.out.println("1. View contacts.\n" +
-                    "2. Add a new contact.\n" +
-                    "3. Search a contact by name.\n" +
-                    "4. Delete an existing contact.\n" +
-                    "5. Exit\n");
-            int userSelect = input.getInt(1, 5);
-            switch (userSelect) {
-                case 1:
-                    System.out.println("\n");
-                    viewContacts();
-                    System.out.println("\n");
-                    break;
-                case 2:
-                    addContacts();
-                    System.out.println("\n");
-                    viewContacts();
-                    System.out.println("\n");
-                    break;
-                case 3:
-                    System.out.println("Enter a name: ");
-                    String searchedName = input.getString();
-                    System.out.println("\n");
-                    searchContacts(searchedName);
-                    System.out.println("\n");
-                    break;
-                case 4:
-                    System.out.println("\n");
-                    viewContacts();
-                    System.out.println("\n");
-                    deleteContacts();
-                    System.out.println("\n");
-                    viewContacts();
-                    System.out.println("\n");
-                    break;
-                case 5:
-                    keepOn = false;
-                    break;
-            }
-        }while(keepOn);
-    }
+
+
 
 }
