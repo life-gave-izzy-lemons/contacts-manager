@@ -1,5 +1,7 @@
-gary cool   | (123) 123-4122
-Bryan Smith | (913) 223-0846
-Lemon       | (213) 098-7654
-Izzy        | (210) 889-9765
-Mark        | (210) 765-4356
+Gary Cool      | (123) 123-4122
+Bryan Smith    | (913) 223-0846
+Lemon          | (213) 098-7654
+Izzy Brashears | (866) 121-3939
+Red Beard      | (210) 987-9090
+Rube Lopez     | (210) 313-9065
+The Intern     | (210) 655-9090

@@ -1,3 +1,6 @@
+package originalApplication;
+import newApplication.Input;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -6,8 +9,8 @@ import java.nio.file.StandardOpenOption;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
-//
-//
+
+
 //public class ContactsApplication {
 //
 //    static Input input = new Input();
@@ -19,7 +22,7 @@ import java.util.ArrayList;
 //
 //
 //    }
-//
+
 //
 //    public static void viewContacts() {
 //        List<String> strList;
@@ -37,7 +40,7 @@ import java.util.ArrayList;
 //        }
 //
 //    }
-
+//
 //    public static void addContacts() {
 //        System.out.println("Enter name: ");
 //        String name = input.getString();

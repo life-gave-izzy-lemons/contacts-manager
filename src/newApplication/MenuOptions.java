@@ -17,9 +17,9 @@ public class MenuOptions {
     public static void viewContacts() {
         List<String> strList;
         String name = "       Name";
-        String num = "Number";
-        System.out.printf("%-15s | %s \n", name, num);
-        System.out.println("----------------------------");
+        String num = "    Number";
+        System.out.printf("%-18s | %s \n", name, num);
+        System.out.println("-----------------------------------");
         try {
             strList = Files.readAllLines(p);
             for (int i = 0; i < strList.size(); i++) {
@@ -39,7 +39,7 @@ public class MenuOptions {
         try {
             Files.write(
                     p,
-                    Arrays.asList(String.format("%-11s | %s", newContact.getName(), newContact.getNumber())), // list with one item
+                    Arrays.asList(String.format("%-14s | %s", newContact.getName(), newContact.getNumber())), // list with one item
                     StandardOpenOption.APPEND
             );
         } catch (IOException e) {
@@ -49,10 +49,10 @@ public class MenuOptions {
 
     public static void searchContacts(String name) {
         List<String> strList;
-        String nameTitle = "       Name";
-        String numTitle = "Number";
-        System.out.printf("%-15s | %s \n", nameTitle, numTitle);
-        System.out.println("----------------------------");
+        String nameTitle = "        Name";
+        String numTitle = "     Number";
+        System.out.printf("%-17s | %s \n", nameTitle, numTitle);
+        System.out.println("-----------------------------------");
         try {
             strList = Files.readAllLines(p);
             for (int i = 0; i < strList.size(); i++) {
@@ -67,9 +67,6 @@ public class MenuOptions {
 
     public static void deleteContacts() {
         System.out.println("Choose the number you want to delete: ");
-
-
-        List<String> strList = null;
         List<String> lines = null;
         int userInput;
 
