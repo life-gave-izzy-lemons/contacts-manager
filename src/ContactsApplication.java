@@ -56,9 +56,12 @@ public class ContactsApplication {
 
     public static void searchContacts(String name) {
         List<String> strList;
+        String nameTitle = "       Name";
+        String numTitle = "Number";
+        System.out.printf("%-15s | %s \n", nameTitle, numTitle);
+        System.out.println("----------------------------");
         try {
             strList = Files.readAllLines(filePath);
-//            System.out.printf("Name | Phone number");
             for (int i = 0; i < strList.size(); i++) {
                 if (strList.get(i).toLowerCase().contains(name.toLowerCase())) {
                     System.out.print((i + 1) + ": " + strList.get(i) + "\n");
