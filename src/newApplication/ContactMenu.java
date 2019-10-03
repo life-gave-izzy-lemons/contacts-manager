@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Arrays;
 import java.util.List;
@@ -50,6 +51,7 @@ public class ContactMenu extends MenuOptions {
                     break;
                 case 5:
                     keepOn = false;
+                    System.out.println("Goodbye!");
                     break;
             }
         }while(keepOn);
